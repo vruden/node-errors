@@ -1,16 +1,43 @@
 {
   "name": "node-errors",
   "description": "",
-  "version": "0.0.1",
-  "private": false,
+  "version": "0.0.3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vruden/node-errors.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vruden/node-errors/issues"
+  },
+  "homepage": "https://github.com/vruden/node-errors",
+  "author": {
+    "name": "Vladimir Rudenko",
+    "email": "ruden.v.a@gmail.com"
+  },
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "engines": {
-    "node": ">=5.7.0",
-    "npm": ">=3.6.0"
+    "node": ">=8.5.0",
+    "npm": ">=5.3.0"
+  },
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "npm run clean && npm run build-ts && npm run tslint",
+    "clean": "rm -rf lib",
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "test": "mocha test"
   },
   "dependencies": {
-    "lodash": "^3.10.0"
   },
   "devDependencies": {
-
-  }
+    "@types/node": "^8.0.29"
+  },
+  "keywords": [
+    "node",
+    "error",
+    "error handler"
+  ]
 }
