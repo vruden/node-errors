@@ -1,6 +1,6 @@
 import * as http from 'http';
 
-module.exports = function (debugMode) {
+export const errorHandler = function (debugMode) {
     return function (err, req, res, next) {
         const error: {message?, code?, errors?} = {
             message: err.message,
