@@ -1,9 +1,11 @@
-export interface ICustomError extends Error {
+import * as http from 'http';
+
+export interface IBaseError extends Error {
     code: number;
     time: Date;
 }
 
-export class CustomError extends Error implements ICustomError {
+export class BaseError extends Error implements IBaseError {
     readonly time: Date;
 
     constructor(message?: string, public code: number = 0) {
@@ -11,12 +13,12 @@ export class CustomError extends Error implements ICustomError {
 
         Error.captureStackTrace(this, this.constructor);
 
-        this.name = 'CustomError';
+        this.name = this.constructor.name;
         this.time = new Date();
     }
 }
 
-export interface IHttpError extends ICustomError {
+export interface IHttpError extends IBaseError {
     statusCode: number;
 }
 
@@ -26,19 +28,61 @@ export interface IHttpError extends ICustomError {
  * @param message
  * @param code
  */
-export class HttpError extends CustomError implements IHttpError {
+export class HttpError extends BaseError implements IHttpError {
+    public statusMessage: string;
+
     constructor(public statusCode: number = 500, message?: string, code?: number) {
         super(message, code);
 
-        this.name = 'HttpError';
+        this.statusMessage = http.STATUS_CODES[statusCode];
     }
 }
 
-export class ServerError extends HttpError {
+export class BadRequestHttpError extends HttpError {
     constructor(message?: string, code?: number) {
-        super(500, message, code);
+        super(400, message, code);
+    }
+}
 
-        this.name = 'ServerError';
+export class UnauthorizedHttpError extends HttpError {
+    constructor(message?: string, code?: number) {
+        super(401, message, code);
+    }
+}
+
+export class ForbiddenHttpError extends HttpError {
+    constructor(message?: string, code?: number) {
+        super(403, message, code);
+    }
+}
+
+export class NotFoundHttpError extends HttpError {
+    constructor(message?: string, code?: number) {
+        super(404, message, code);
+    }
+}
+
+export class MethodNotAllowedHttpError extends HttpError {
+    constructor(message?: string, code?: number) {
+        super(405, message, code);
+    }
+}
+
+export class GoneHttpError extends HttpError {
+    constructor(message?: string, code?: number) {
+        super(410, message, code);
+    }
+}
+
+export class UnsupportedMediaTypeHttpError extends HttpError {
+    constructor(message?: string, code?: number) {
+        super(415, message, code);
+    }
+}
+
+export class UnprocessableEntityHttpError extends HttpError {
+    constructor(message?: string, code?: number) {
+        super(422, message, code);
     }
 }
 
@@ -49,7 +93,17 @@ export interface IValidationError extends IHttpError {
 export class ValidationError extends HttpError implements IValidationError {
     constructor(public errors: any[], message = 'Validation Failed', statusCode: number = 422, code?: number) {
         super(statusCode, message, code);
+    }
+}
 
-        this.name = 'ValidationError';
+export class TooManyRequestsHttpError extends HttpError {
+    constructor(message?: string, code?: number) {
+        super(429, message, code);
+    }
+}
+
+export class ServerError extends HttpError {
+    constructor(message?: string, code?: number) {
+        super(500, message, code);
     }
 }
