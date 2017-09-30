@@ -87,11 +87,11 @@ export class UnprocessableEntityHttpError extends HttpError {
 }
 
 export interface IValidationError extends IHttpError {
-    errors: any[];
+    errors: any;
 }
 
 export class ValidationError extends HttpError implements IValidationError {
-    constructor(public errors: any[], message = 'Validation Failed', statusCode: number = 422, code?: number) {
+    constructor(public errors: any, message = 'Validation Failed', statusCode: number = 422, code?: number) {
         super(statusCode, message, code);
     }
 }
