@@ -58,3 +58,6 @@ export declare class TooManyRequestsHttpError extends HttpError {
 export declare class ServerError extends HttpError {
     constructor(message?: string, code?: number);
 }
+export declare class NotImplementedError extends HttpError {
+    constructor(message?: string, code?: number);
+}

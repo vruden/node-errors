@@ -27,6 +27,7 @@
 * [UnprocessableEntityHttpError](#UnprocessableEntityHttpError)
 * [ValidationError](#ValidationError)
 * [TooManyRequestsHttpError](#TooManyRequestsHttpError)
+* [NotImplementedError](#NotImplementedError)
    
 
 
@@ -121,3 +122,7 @@ ValidationError represents an "Unprocessable Entity" HTTP exception with status 
 TooManyRequestsHttpError represents a "Too Many Requests" HTTP exception with status code 429
 
 Use this exception to indicate that a client has made too many requests in a given period of time. For example, you would throw this exception when 'throttling' an API user.
+
+### NotImplementedError
+
+NotImplementedError represents an "Not Implemented" HTTP exception with status code 501.

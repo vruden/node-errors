@@ -107,3 +107,9 @@ export class ServerError extends HttpError {
         super(500, message, code);
     }
 }
+
+export class NotImplementedError extends HttpError {
+    constructor(message?: string, code?: number) {
+        super(501, message, code);
+    }
+}

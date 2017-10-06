@@ -12,6 +12,7 @@ export {
     UnsupportedMediaTypeHttpError,
     UnprocessableEntityHttpError,
     ValidationError,
-    TooManyRequestsHttpError
+    TooManyRequestsHttpError,
+    NotImplementedError
 } from './errors';
 export { errorHandler } from './error-handler';
