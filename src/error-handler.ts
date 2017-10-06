@@ -8,7 +8,7 @@ export const errorHandler = function (debugMode) {
 
         const statusCode = err.statusCode || 500;
 
-        if (error.message === undefined) {
+        if (error.message === '') {
             error.message = http.STATUS_CODES[statusCode];
         }
 
