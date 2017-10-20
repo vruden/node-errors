@@ -46,15 +46,18 @@ export declare class UnprocessableEntityHttpError extends HttpError {
     constructor(message?: string, code?: number);
 }
 export interface IValidationError extends IHttpError {
-    errors: any[];
+    errors: any;
 }
-export declare class ValidationError extends HttpError implements IValidationError {
-    errors: any[];
-    constructor(errors: any[], message?: string, statusCode?: number, code?: number);
+export declare class ValidationHttpError extends HttpError implements IValidationError {
+    errors: any;
+    constructor(errors: any, message?: string, statusCode?: number, code?: number);
 }
 export declare class TooManyRequestsHttpError extends HttpError {
     constructor(message?: string, code?: number);
 }
-export declare class ServerError extends HttpError {
+export declare class ServerHttpError extends HttpError {
+    constructor(message?: string, code?: number);
+}
+export declare class NotImplementedHttpError extends HttpError {
     constructor(message?: string, code?: number);
 }

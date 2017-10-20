@@ -2,7 +2,7 @@
 export {
     BaseError,
     HttpError,
-    ServerError,
+    ServerHttpError,
     BadRequestHttpError,
     UnauthorizedHttpError,
     ForbiddenHttpError,
@@ -11,7 +11,8 @@ export {
     GoneHttpError,
     UnsupportedMediaTypeHttpError,
     UnprocessableEntityHttpError,
-    ValidationError,
-    TooManyRequestsHttpError
+    ValidationHttpError,
+    TooManyRequestsHttpError,
+    NotImplementedHttpError
 } from './errors';
 export { errorHandler } from './error-handler';
