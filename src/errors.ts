@@ -90,7 +90,7 @@ export interface IValidationError extends IHttpError {
     errors: any;
 }
 
-export class ValidationError extends HttpError implements IValidationError {
+export class ValidationHttpError extends HttpError implements IValidationError {
     constructor(public errors: any, message = 'Validation Failed', statusCode: number = 422, code?: number) {
         super(statusCode, message, code);
     }
@@ -102,13 +102,13 @@ export class TooManyRequestsHttpError extends HttpError {
     }
 }
 
-export class ServerError extends HttpError {
+export class ServerHttpError extends HttpError {
     constructor(message?: string, code?: number) {
         super(500, message, code);
     }
 }
 
-export class NotImplementedError extends HttpError {
+export class NotImplementedHttpError extends HttpError {
     constructor(message?: string, code?: number) {
         super(501, message, code);
     }

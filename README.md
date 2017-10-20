@@ -16,7 +16,7 @@
 ## List of errors:
 * [BaseError](#BaseError)
 * [HttpError](#HttpError)
-* [ServerError](#ServerError)
+* [ServerHttpError](#ServerHttpError)
 * [BadRequestHttpError](#BadRequestHttpError)
 * [UnauthorizedHttpError](#UnauthorizedHttpError)
 * [ForbiddenHttpError](#ForbiddenHttpError)
@@ -25,9 +25,9 @@
 * [GoneHttpError](#GoneHttpError)
 * [UnsupportedMediaTypeHttpError](#UnsupportedMediaTypeHttpError)
 * [UnprocessableEntityHttpError](#UnprocessableEntityHttpError)
-* [ValidationError](#ValidationError)
+* [ValidationHttpError](#ValidationHttpError)
 * [TooManyRequestsHttpError](#TooManyRequestsHttpError)
-* [NotImplementedError](#NotImplementedError)
+* [NotImplementedHttpError](#NotImplementedHttpError)
    
 
 
@@ -50,11 +50,11 @@
     err.code // 1234
     err.time // Wed Sep 27 2017 16:26:10 GMT+0300 (MSK)
 
-### ServerError
+### ServerHttpError
 
-ServerErrorHttpException represents an "Internal Server Error" HTTP exception with status code 500.
+ServerHttpError represents an "Internal Server Error" HTTP exception with status code 500.
 
-    new ServerError('Lost connection');
+    new ServerHttpError('Lost connection');
 
 ### BadRequestHttpError
 
@@ -103,18 +103,18 @@ UnprocessableEntityHttpError represents an "Unprocessable Entity" HTTP exception
 
 Use this exception to inform that the server understands the content type of the request entity and the syntax of that request entity is correct but the server was unable to process the contained instructions. For example, to return form validation errors.
 
-### ValidationError
+### ValidationHttpError
 
     let badFields = [];
     
-    const err = new ValidationError(badFields);
+    const err = new ValidationHttpError(badFields);
     
     for (let badFiled of err.errors) {
         
     }
     
         
-ValidationError represents an "Unprocessable Entity" HTTP exception with status code 422.
+ValidationHttpError represents an "Unprocessable Entity" HTTP exception with status code 422.
 
 
 ### TooManyRequestsHttpError
@@ -123,6 +123,6 @@ TooManyRequestsHttpError represents a "Too Many Requests" HTTP exception with st
 
 Use this exception to indicate that a client has made too many requests in a given period of time. For example, you would throw this exception when 'throttling' an API user.
 
-### NotImplementedError
+### NotImplementedHttpError
 
-NotImplementedError represents an "Not Implemented" HTTP exception with status code 501.
+NotImplementedHttpError represents an "Not Implemented" HTTP exception with status code 501.

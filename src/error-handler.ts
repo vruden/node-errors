@@ -1,23 +1,24 @@
 import * as http from 'http';
+import { HttpError } from './errors';
 
-export const errorHandler = function (debugMode) {
+export const errorHandler = function (debugMode: boolean = false) {
     return function (err, req, res, next) {
-        const error: {message?, code?, errors?} = {
-            message: err.message,
-        };
-
         const statusCode = err.statusCode || 500;
 
-        if (error.message === '') {
-            error.message = http.STATUS_CODES[statusCode];
+        const data: {message?: string, code?: number, errors?: any} = {
+            message: 'Internal Server Error'
+        };
+
+        if (err instanceof HttpError) {
+            data.message = err.message === '' ? http.STATUS_CODES[statusCode] : err.message;
         }
 
         if (err.code !== undefined) {
-            error.code = err.code;
+            data.code = err.code;
         }
 
         if (err.errors !== undefined) {
-            error.errors = err.errors;
+            data.errors = err.errors;
         }
 
         const time = (err.time || new Date()).toUTCString().slice(5, -4);
@@ -25,9 +26,9 @@ export const errorHandler = function (debugMode) {
         if (debugMode && statusCode >= 500) {
             console.error(time, err.stack);
         } else {
-            console.log(time, '- [error]', error.message);
+            console.log(time, '- [error]', err.message);
         }
 
-        res.status(statusCode).json(error);
+        res.status(statusCode).json(data);
     };
 };
