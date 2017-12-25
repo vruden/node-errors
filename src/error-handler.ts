@@ -26,7 +26,7 @@ export const errorHandler = function (debugMode: boolean = false) {
         if (debugMode && statusCode >= 500) {
             console.error(time, err.stack);
         } else {
-            console.log(time, '- [error]', err.message);
+            console.log(time, '- [error]', data.message);
         }
 
         res.status(statusCode).json(data);
