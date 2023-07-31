@@ -36,6 +36,9 @@ export declare class NotFoundHttpError extends HttpError {
 export declare class MethodNotAllowedHttpError extends HttpError {
     constructor(message?: string, code?: number);
 }
+export declare class NotAcceptableHttpError extends HttpError {
+    constructor(message?: string, code?: number);
+}
 export declare class GoneHttpError extends HttpError {
     constructor(message?: string, code?: number);
 }
