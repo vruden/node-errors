@@ -68,6 +68,12 @@ export class MethodNotAllowedHttpError extends HttpError {
     }
 }
 
+export class NotAcceptableHttpError extends HttpError {
+    constructor(message?: string, code?: number) {
+        super(406, message, code);
+    }
+}
+
 export class GoneHttpError extends HttpError {
     constructor(message?: string, code?: number) {
         super(410, message, code);

@@ -8,6 +8,7 @@ export {
     ForbiddenHttpError,
     NotFoundHttpError,
     MethodNotAllowedHttpError,
+    NotAcceptableHttpError,
     GoneHttpError,
     UnsupportedMediaTypeHttpError,
     UnprocessableEntityHttpError,
